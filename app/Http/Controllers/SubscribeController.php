@@ -23,6 +23,7 @@ use CachetHQ\Cachet\Models\Subscriber;
 use CachetHQ\Cachet\Models\Subscription;
 use GrahamCampbell\Binput\Facades\Binput;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Config;
@@ -37,6 +38,25 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class SubscribeController extends Controller
 {
+    /**
+     * The illuminate guard instance.
+     *
+     * @var \Illuminate\Contracts\Auth\Guard
+     */
+    protected $auth;
+
+    /**
+     * Create a new subscribe controller instance.
+     *
+     * @param \Illuminate\Contracts\Auth\Guard $auth
+     *
+     * @return void
+     */
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
     /**
      * Show the subscribe by email page.
      *
@@ -60,7 +80,7 @@ class SubscribeController extends Controller
         $verified = app(Repository::class)->get('setting.skip_subscriber_verification');
 
         try {
-            $subscription = dispatch(new SubscribeSubscriberCommand($email, $verified));
+            $subscription = execute(new SubscribeSubscriberCommand($email, $verified));
         } catch (ValidationException $e) {
             return cachet_redirect('status-page')
                 ->withInput(Binput::all())
@@ -96,7 +116,7 @@ class SubscribeController extends Controller
         }
 
         if (!$subscriber->is_verified) {
-            dispatch(new VerifySubscriberCommand($subscriber));
+            execute(new VerifySubscriberCommand($subscriber));
         }
 
         return cachet_redirect('status-page')
@@ -124,9 +144,9 @@ class SubscribeController extends Controller
         }
 
         if ($subscription) {
-            dispatch(new UnsubscribeSubscriptionCommand(Subscription::forSubscriber($subscriber->id)->firstOrFail()));
+            execute(new UnsubscribeSubscriptionCommand(Subscription::forSubscriber($subscriber->id)->firstOrFail()));
         } else {
-            dispatch(new UnsubscribeSubscriberCommand($subscriber, $subscription));
+            execute(new UnsubscribeSubscriberCommand($subscriber));
         }
 
         return cachet_redirect('status-page')
@@ -146,10 +166,12 @@ class SubscribeController extends Controller
             throw new NotFoundHttpException();
         }
 
+        $includePrivate = $this->auth->check();
+
         $subscriber = Subscriber::where('verify_code', '=', $code)->first();
-        $usedComponentGroups = Component::enabled()->where('group_id', '>', 0)->groupBy('group_id')->pluck('group_id');
+        $usedComponentGroups = Component::enabled()->authenticated($includePrivate)->where('group_id', '>', 0)->groupBy('group_id')->pluck('group_id');
         $componentGroups = ComponentGroup::whereIn('id', $usedComponentGroups)->orderBy('order')->get();
-        $ungroupedComponents = Component::enabled()->where('group_id', '=', 0)->orderBy('order')->orderBy('created_at')->get();
+        $ungroupedComponents = Component::enabled()->authenticated($includePrivate)->where('group_id', '=', 0)->orderBy('order')->orderBy('created_at')->get();
 
         if (!$subscriber) {
             throw new BadRequestHttpException();
@@ -182,7 +204,7 @@ class SubscribeController extends Controller
         }
 
         try {
-            dispatch(new UpdateSubscriberSubscriptionCommand($subscriber, Binput::get('subscriptions')));
+            execute(new UpdateSubscriberSubscriptionCommand($subscriber, Binput::get('subscriptions')));
         } catch (ValidationException $e) {
             return cachet_redirect('subscribe.manage', $subscriber->verify_code)
                 ->withInput(Binput::all())

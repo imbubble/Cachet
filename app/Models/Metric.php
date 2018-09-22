@@ -166,13 +166,23 @@ class Metric extends Model implements HasPresenter
     }
 
     /**
+     * Get the meta relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function meta()
+    {
+        return $this->morphMany(Meta::class, 'meta');
+    }
+
+    /**
      * Get the points relation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function points()
     {
-        return $this->hasMany(MetricPoint::class, 'metric_id', 'id');
+        return $this->hasMany(MetricPoint::class, 'metric_id', 'id')->latest();
     }
 
     /**
@@ -184,7 +194,7 @@ class Metric extends Model implements HasPresenter
      */
     public function scopeDisplayable(Builder $query)
     {
-        return $query->where('display_chart', '=', true)->where('visible', '!=', self::VISIBLE_HIDDEN);
+        return $query->where('display_chart', '=', true)->where('visible', '<>', self::VISIBLE_HIDDEN);
     }
 
     /**

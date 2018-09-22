@@ -15,7 +15,7 @@ return [
         'last_updated' => 'Last updated :timestamp',
         'status'       => [
             0 => 'Unknown',
-            1 => 'تشغيل',
+            1 => 'Operational',
             2 => 'Performance Issues',
             3 => 'Partial Outage',
             4 => 'Major Outage',
@@ -27,15 +27,14 @@ return [
 
     // Incidents
     'incidents' => [
-        'none'          => 'No incidents reported',
-        'past'          => 'Past Incidents',
-        'previous_week' => 'الأسبوع السابق',
-        'next_week'     => 'الاسبوع القادم',
-        'stickied'      => 'Stickied Incidents',
-        'scheduled'     => 'Scheduled Maintenance',
-        'scheduled_at'  => ', scheduled :timestamp',
-        'posted'        => 'Posted :timestamp',
-        'status'        => [
+        'none'         => 'No incidents reported',
+        'past'         => 'Past Incidents',
+        'stickied'     => 'Stickied Incidents',
+        'scheduled'    => 'Maintenance',
+        'scheduled_at' => ', scheduled :timestamp',
+        'posted'       => 'Posted :timestamp',
+        'posted_at'    => 'Posted at :timestamp',
+        'status'       => [
             1 => 'Investigating',
             2 => 'Identified',
             3 => 'Watching',
@@ -54,9 +53,9 @@ return [
 
     // Service Status
     'service' => [
-        'good'  => '[0,1] System operational|[2,Inf] All systems are operational',
-        'bad'   => '[0,1] The system is experiencing issues|[2,Inf] Some systems are experiencing issues',
-        'major' => '[0,1] The system is experiencing major issues|[2,Inf] Some systems are experiencing major issues',
+        'good'  => '[0,1]System operational|[2,*]All systems are operational',
+        'bad'   => '[0,1] النظام يواجه مشاكل|[2,Inf] بعض الأنظمة تواجه مشاكل',
+        'major' => '[0,1] النظام يواجه مشاكل أساسية|[2,Inf] بعض الأنظمة تواجه مشاكل أساسية',
     ],
 
     'api' => [
@@ -67,21 +66,23 @@ return [
     // Metrics
     'metrics' => [
         'filter' => [
-            'last_hour' => 'الساعة الأخيرة',
+            'last_hour' => 'Last Hour',
             'hourly'    => 'Last 12 Hours',
-            'weekly'    => 'أسبوع',
-            'monthly'   => 'شهر',
+            'weekly'    => 'Week',
+            'monthly'   => 'Month',
         ],
     ],
 
     // Subscriber
     'subscriber' => [
-        'subscribe'   => 'Subscribe to get the updates',
-        'unsubscribe' => 'Unsubscribe at :link',
-        'button'      => 'Subscribe',
-        'manage'      => [
+        'subscribe'           => 'Subscribe to get the updates',
+        'unsubscribe'         => 'Unsubscribe',
+        'button'              => 'Subscribe',
+        'manage_subscription' => 'Manage subscription',
+        'manage'              => [
             'no_subscriptions' => 'You\'re currently subscribed to all updates.',
             'my_subscriptions' => 'You\'re currently subscribed to the following updates.',
+            'manage_at_link'   => 'Manage your subscriptions at :link',
         ],
         'email' => [
             'subscribe'          => 'Subscribe to email updates.',
@@ -96,7 +97,7 @@ return [
     ],
 
     'signup' => [
-        'title'    => 'سجل',
+        'title'    => 'Sign Up',
         'username' => 'Username',
         'email'    => 'Email',
         'password' => 'Password',
@@ -118,9 +119,18 @@ return [
         ],
     ],
 
+    // Meta descriptions
+    'meta' => [
+        'description' => [
+            'incident'  => 'Details and updates about the :name incident that occurred on :date',
+            'schedule'  => 'Details about the scheduled maintenance period :name starting :startDate',
+            'subscribe' => 'Subscribe to :app in order to receive updates of incidents and scheduled maintenance periods',
+            'overview'  => 'Stay up to date with the latest service updates from :app.',
+        ],
+    ],
+
     // Other
     'home'            => 'Home',
-    'description'     => 'Stay up to date with the latest service updates from :app.',
     'powered_by'      => 'Powered by <a href="https://cachethq.io" class="links">Cachet</a>.',
     'timezone'        => 'Times are shown in :timezone.',
     'about_this_site' => 'About This Site',

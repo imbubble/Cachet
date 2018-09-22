@@ -12,30 +12,29 @@
 return [
     // Components
     'components' => [
-        'last_updated' => 'Senast uppdaterad :timestamp',
+        'last_updated' => 'Last updated :timestamp',
         'status'       => [
-            0 => 'Okänd',
+            0 => 'Unknown',
             1 => 'Fungerar',
             2 => 'Prestandaproblem',
             3 => 'Mindre avbrott',
             4 => 'Större avbrott',
         ],
         'group' => [
-            'other' => 'Andra komponenter',
+            'other' => 'Other Components',
         ],
     ],
 
     // Incidents
     'incidents' => [
-        'none'          => 'Inga händelser har rapporterats',
-        'past'          => 'Tidigare händelser',
-        'previous_week' => 'Föregående vecka',
-        'next_week'     => 'Nästa vecka',
-        'stickied'      => 'Fästa incidenter',
-        'scheduled'     => 'Planerat underhåll',
-        'scheduled_at'  => ', schemalagda: tidsstämpel',
-        'posted'        => 'Upplagd :timestamp',
-        'status'        => [
+        'none'         => 'Inga händelser har rapporterats',
+        'past'         => 'Tidigare händelser',
+        'stickied'     => 'Stickied Incidents',
+        'scheduled'    => 'Maintenance',
+        'scheduled_at' => ', schemalagda: tidsstämpel',
+        'posted'       => 'Posted :timestamp',
+        'posted_at'    => 'Posted at :timestamp',
+        'status'       => [
             1 => 'Undersöker',
             2 => 'Identifierat',
             3 => 'Bevakar',
@@ -46,17 +45,17 @@ return [
     // Schedule
     'schedules' => [
         'status' => [
-            0 => 'Kommande',
-            1 => 'Pågående',
-            2 => 'Slutförd',
+            0 => 'Upcoming',
+            1 => 'In Progress',
+            2 => 'Complete',
         ],
     ],
 
     // Service Status
     'service' => [
-        'good'  => '[0,1] Systemet fungerar |[2,Inf] Alla system fungerar',
-        'bad'   => '[0,1] Systemet har för närvarande problem|[2,Inf] Vissa system har problem',
-        'major' => '[0,1] Stora störningar på tjänsten [2,Inf] Stora störningar på vissa system',
+        'good'  => '[0,1]System operational|[2,*]All systems are operational',
+        'bad'   => '[0,1]The system is experiencing issues|[2,*]Some systems are experiencing issues',
+        'major' => '[0,1]The system is experiencing major issues|[2,*]Some systems are experiencing major issues',
     ],
 
     'api' => [
@@ -76,18 +75,20 @@ return [
 
     // Subscriber
     'subscriber' => [
-        'subscribe'   => 'Prenumerera för att få de senaste uppdateringarna',
-        'unsubscribe' => 'Unsubscribe at :link',
-        'button'      => 'Prenumerera',
-        'manage'      => [
-            'no_subscriptions' => 'Du prenumererar på alla uppdateringar.',
-            'my_subscriptions' => 'Du prenumererar på följande uppdateringar.',
+        'subscribe'           => 'Prenumerera för att få de senaste uppdateringarna',
+        'unsubscribe'         => 'Unsubscribe',
+        'button'              => 'Prenumerera',
+        'manage_subscription' => 'Manage subscription',
+        'manage'              => [
+            'no_subscriptions' => 'You\'re currently subscribed to all updates.',
+            'my_subscriptions' => 'You\'re currently subscribed to the following updates.',
+            'manage_at_link'   => 'Manage your subscriptions at :link',
         ],
         'email' => [
             'subscribe'          => 'Prenumerera på epost-uppdateringar.',
             'subscribed'         => 'Du har börjat prenumerera på e-postmeddelanden, vänligen kontrollera din e-post för att bekräfta din prenumeration.',
             'verified'           => 'Din epost-prenumeration har bekräftats. Tack!',
-            'manage'             => 'Hantera din prenumeration',
+            'manage'             => 'Manage your subscription',
             'unsubscribe'        => 'Avbeställ epost-uppdateringar.',
             'unsubscribed'       => 'Din epost-prenumeration har avbrutits.',
             'failure'            => 'Något blev fel med prenumerationen.',
@@ -118,11 +119,20 @@ return [
         ],
     ],
 
+    // Meta descriptions
+    'meta' => [
+        'description' => [
+            'incident'  => 'Details and updates about the :name incident that occurred on :date',
+            'schedule'  => 'Details about the scheduled maintenance period :name starting :startDate',
+            'subscribe' => 'Subscribe to :app in order to receive updates of incidents and scheduled maintenance periods',
+            'overview'  => 'Stay up to date with the latest service updates from :app.',
+        ],
+    ],
+
     // Other
-    'home'            => 'Hem',
-    'description'     => 'Håll dig uppdaterad med de senaste service-uppdateringarna från :app.',
+    'home'            => 'Home',
     'powered_by'      => 'Powered by <a href="https://cachethq.io" class="links">Cachet</a>.',
-    'timezone'        => 'Tider visas i :timezone.',
+    'timezone'        => 'Times are shown in :timezone.',
     'about_this_site' => 'Om sidan',
     'rss-feed'        => 'RSS',
     'atom-feed'       => 'Atom',

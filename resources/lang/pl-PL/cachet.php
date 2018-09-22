@@ -27,15 +27,14 @@ return [
 
     // Incidents
     'incidents' => [
-        'none'          => 'Brak zgłoszonych incydentów',
-        'past'          => 'Vergangene Vorfälle',
-        'previous_week' => 'Poprzedni tydzień',
-        'next_week'     => 'W przyszłym tygodniu',
-        'stickied'      => 'Przyklejone incydenty',
-        'scheduled'     => 'Geplante Wartungen',
-        'scheduled_at'  => ', geplant :timestamp',
-        'posted'        => 'Opublikowano :timestamp',
-        'status'        => [
+        'none'         => 'Brak zgłoszonych incydentów',
+        'past'         => 'Vergangene Vorfälle',
+        'stickied'     => 'Stickied Incidents',
+        'scheduled'    => 'Maintenance',
+        'scheduled_at' => ', geplant :timestamp',
+        'posted'       => 'Posted :timestamp',
+        'posted_at'    => 'Posted at :timestamp',
+        'status'       => [
             1 => 'Untersuchungen laufen',
             2 => 'Identifiziert',
             3 => 'Unter Beobachtung',
@@ -54,9 +53,9 @@ return [
 
     // Service Status
     'service' => [
-        'good'  => '[0,1] System działa poprawnie|[2,Inf] Wszystkie systemy działają poprawnie',
-        'bad'   => '[0,1] W systemie obecnie występują problemy|[2,Inf] W niektórych systemach występują problemy',
-        'major' => '[0,1] Usługa jest poważnie przeciążona|[2,Inf] Niektóre systemy są poważnie przeciążone',
+        'good'  => '[0,1]System operational|[2,*]All systems are operational',
+        'bad'   => '[0,1]The system is experiencing issues|[2,*]Some systems are experiencing issues',
+        'major' => '[0,1]The system is experiencing major issues|[2,*]Some systems are experiencing major issues',
     ],
 
     'api' => [
@@ -76,12 +75,14 @@ return [
 
     // Subscriber
     'subscriber' => [
-        'subscribe'   => 'Abonnieren Sie um die neuesten Updates zu erhalten.',
-        'unsubscribe' => 'Unsubscribe at :link',
-        'button'      => 'Abonnieren',
-        'manage'      => [
+        'subscribe'           => 'Abonnieren Sie um die neuesten Updates zu erhalten.',
+        'unsubscribe'         => 'Unsubscribe',
+        'button'              => 'Abonnieren',
+        'manage_subscription' => 'Manage subscription',
+        'manage'              => [
             'no_subscriptions' => 'Jesteś obecnie zapisany na wszystkie aktualizacje.',
             'my_subscriptions' => 'Jesteś obecnie zapisany na poniższe aktualizacje.',
+            'manage_at_link'   => 'Manage your subscriptions at :link',
         ],
         'email' => [
             'subscribe'          => 'Aktualisierungen per E-Mail abonnieren.',
@@ -97,9 +98,9 @@ return [
 
     'signup' => [
         'title'    => 'Zarejestruj się',
-        'username' => 'Benutzername',
+        'username' => 'Nazwa Użytkownika',
         'email'    => 'E-Mail',
-        'password' => 'Passwort',
+        'password' => 'Hasło',
         'success'  => 'Twoje konto zostało utworzone.',
         'failure'  => 'Coś poszło nie tak w trakcje rejestracji.',
     ],
@@ -118,11 +119,20 @@ return [
         ],
     ],
 
+    // Meta descriptions
+    'meta' => [
+        'description' => [
+            'incident'  => 'Details and updates about the :name incident that occurred on :date',
+            'schedule'  => 'Details about the scheduled maintenance period :name starting :startDate',
+            'subscribe' => 'Subscribe to :app in order to receive updates of incidents and scheduled maintenance periods',
+            'overview'  => 'Bądź na bieżąco z aktualizacjami z :app.',
+        ],
+    ],
+
     // Other
     'home'            => 'Strona Główna',
-    'description'     => 'Bądź na bieżąco z aktualizacjami z :app.',
     'powered_by'      => 'Obsługiwany przez <a href="https://cachethq.io" class="links">Cachet</a>.',
-    'timezone'        => 'Czas według strefy :timezone.',
+    'timezone'        => 'Times are shown in :timezone.',
     'about_this_site' => 'Über diese Seite',
     'rss-feed'        => 'RSS',
     'atom-feed'       => 'Atom',

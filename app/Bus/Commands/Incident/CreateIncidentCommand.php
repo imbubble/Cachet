@@ -97,6 +97,13 @@ final class CreateIncidentCommand
     public $template_vars;
 
     /**
+     * Meta key/value pairs.
+     *
+     * @var array
+     */
+    public $meta = [];
+
+    /**
      * The validation rules.
      *
      * @var string[]
@@ -104,7 +111,7 @@ final class CreateIncidentCommand
     public $rules = [
         'name'             => 'required|string',
         'status'           => 'required|int|min:0|max:4',
-        'message'          => 'required|string',
+        'message'          => 'nullable|string',
         'visible'          => 'nullable|bool',
         'component_id'     => 'nullable|required_with:component_status|int',
         'component_status' => 'nullable|required_with:component_id|int|min:0|max:4',
@@ -112,6 +119,7 @@ final class CreateIncidentCommand
         'stickied'         => 'required|bool',
         'occurred_at'      => 'nullable|string',
         'template'         => 'nullable|string',
+        'meta'             => 'nullable|array',
     ];
 
     /**
@@ -128,10 +136,11 @@ final class CreateIncidentCommand
      * @param string|null $occurred_at
      * @param string|null $template
      * @param array       $template_vars
+     * @param array       $meta
      *
      * @return void
      */
-    public function __construct($name, $status, $message, $visible, $component_id, $component_status, $notify, $stickied, $occurred_at, $template, array $template_vars = [])
+    public function __construct($name, $status, $message, $visible, $component_id, $component_status, $notify, $stickied, $occurred_at, $template, array $template_vars = [], $meta = [])
     {
         $this->name = $name;
         $this->status = $status;
@@ -144,5 +153,6 @@ final class CreateIncidentCommand
         $this->occurred_at = $occurred_at;
         $this->template = $template;
         $this->template_vars = $template_vars;
+        $this->meta = $meta;
     }
 }

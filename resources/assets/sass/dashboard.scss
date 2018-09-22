@@ -14,11 +14,12 @@
 @import "dashboard/pages/dashboard";
 
 // Styles for plugins
+/*! purgecss start ignore */
 @import "plugins/jquery.minicolors";
 @import "plugins/github-markdown";
 @import "plugins/sweetalert";
 @import "plugins/messenger";
 @import "plugins/animate";
-@import "plugins/bootstrap-datetimepicker/bootstrap-datetimepicker";
 @import "plugins/password-strength";
 @import "plugins/sortable";
+/*! purgecss end ignore */

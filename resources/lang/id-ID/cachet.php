@@ -14,7 +14,7 @@ return [
     'components' => [
         'last_updated' => 'Update terakhir :timestamp',
         'status'       => [
-            0 => 'Unknown',
+            0 => 'Tidak diketahui',
             1 => 'Operasional',
             2 => 'Masalah Kinerja',
             3 => 'Gagal Sebagian',
@@ -27,15 +27,14 @@ return [
 
     // Incidents
     'incidents' => [
-        'none'          => 'Tidak ada insiden yang dilaporkan',
-        'past'          => 'Insiden sebelumnya',
-        'previous_week' => 'Pekan sebelumnya',
-        'next_week'     => 'Pekan selanjutnya',
-        'stickied'      => 'Insiden sticky',
-        'scheduled'     => 'Jadwal Pemeliharaan',
-        'scheduled_at'  => ', dijadwalkan pada :timestamp',
-        'posted'        => 'Dikirim: timestamp',
-        'status'        => [
+        'none'         => 'Tidak ada insiden yang dilaporkan',
+        'past'         => 'Insiden sebelumnya',
+        'stickied'     => 'Insiden sticky',
+        'scheduled'    => 'Pemeliharaan',
+        'scheduled_at' => ', dijadwalkan pada :timestamp',
+        'posted'       => 'Dikirim: timestamp',
+        'posted_at'    => 'Dikirim: :timestamp',
+        'status'       => [
             1 => 'Investigasi',
             2 => 'Teridentifikasi',
             3 => 'Dimonitor',
@@ -46,17 +45,17 @@ return [
     // Schedule
     'schedules' => [
         'status' => [
-            0 => 'Upcoming',
-            1 => 'In Progress',
-            2 => 'Complete',
+            0 => 'Mendatang',
+            1 => 'Sedang berlangsung',
+            2 => 'Selesai',
         ],
     ],
 
     // Service Status
     'service' => [
-        'good'  => '[0,1] sistem operasional | [2, Inf] Semua sistem operasional',
-        'bad'   => '[0,1] sistem ini sedang mengalami masalah | [2, Inf] Beberapa sistem mengalami masalah',
-        'major' => '[0,1] Layanan mengalami outage besar | [2, Inf] Beberapa sistem mengalami outage besar',
+        'good'  => '[0,1]System operational|[2,*]All systems are operational',
+        'bad'   => '[0,1]Sistem ini sedang mengalami masalah|[2,*]Beberapa sistem mengalami masalah',
+        'major' => '[0,1]Sistem mengalami masalah besar|[2,*]Beberapa sistem mengalami masalah besar',
     ],
 
     'api' => [
@@ -76,12 +75,14 @@ return [
 
     // Subscriber
     'subscriber' => [
-        'subscribe'   => 'Ikuti newsletter untuk mendapat update terbaru.',
-        'unsubscribe' => 'Unsubscribe at :link',
-        'button'      => 'Daftar',
-        'manage'      => [
+        'subscribe'           => 'Ikuti newsletter untuk mendapat update terbaru.',
+        'unsubscribe'         => 'Unsubscribe',
+        'button'              => 'Daftar',
+        'manage_subscription' => 'Manage subscription',
+        'manage'              => [
             'no_subscriptions' => 'Anda saat ini terdaftar untuk semua update.',
             'my_subscriptions' => 'Anda saat ini berlangganan update berikut.',
+            'manage_at_link'   => 'Manage your subscriptions at :link',
         ],
         'email' => [
             'subscribe'          => 'Langganan update email.',
@@ -118,9 +119,18 @@ return [
         ],
     ],
 
+    // Meta descriptions
+    'meta' => [
+        'description' => [
+            'incident'  => 'Rincian dan update tentang insiden :name yang terjadi pada :date',
+            'schedule'  => 'Rincian tentang jadwal pemeliharaan :name mulai :startDate',
+            'subscribe' => 'Berlangganan :app untuk menerima update insiden dan jadwal pemeliharaan',
+            'overview'  => 'Tetap up to date dengan layanan terbaru dari :app.',
+        ],
+    ],
+
     // Other
     'home'            => 'Depan',
-    'description'     => 'Tetap up to date dengan layanan terbaru dari :app.',
     'powered_by'      => 'Ditenagai oleh <a href="https://cachethq.io" class="links"> Cachet</a>.',
     'timezone'        => 'Waktu dalam :timezone.',
     'about_this_site' => 'Tentang situs ini',

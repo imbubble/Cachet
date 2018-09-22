@@ -16,12 +16,26 @@ return [
 
     // Incidents
     'incidents' => [
-        'title'                    => 'Incidentes &amp; Agenda',
+        'title'                    => 'Incidents & Maintenance',
         'incidents'                => 'Incidentes',
-        'logged'                   => '{0} Não existem incidentes, bom trabalho.|Você registrou um incidente.|Você reportou <strong>:count</strong> incidentes.',
+        'logged'                   => '{0}There are no incidents, good work.|[1]You have logged one incident.|[2,*]You have reported <strong>:count</strong> incidents.',
         'incident-create-template' => 'Criar template',
         'incident-templates'       => 'Template de incidentes',
-        'updates'                  => '{0} Nenhuma Atualização|Uma Atualização|:contagem de Atualizações',
+        'updates'                  => [
+            'title'   => 'Incident updates for :incident',
+            'count'   => '{0}Zero Updates|[1]One Update|[2]Two Updates|[3,*]Several Updates',
+            'add'     => [
+                'title'   => 'Create new incident update',
+                'success' => 'Your new incident update has been created.',
+                'failure' => 'Something went wrong with the incident update.',
+            ],
+            'edit' => [
+                'title'   => 'Edit incident update',
+                'success' => 'The incident update has been updated.',
+                'failure' => 'Something went wrong updating the incident update',
+            ],
+        ],
+        'reported_by'              => 'Reported by :user',
         'add'                      => [
             'title'   => 'Relatar um incidente',
             'success' => 'Incidente adicionado.',
@@ -36,17 +50,13 @@ return [
             'success' => 'O incidente foi excluído e não aparecerá na sua página de status.',
             'failure' => 'O incidente não pode ser excluído, por favor tente novamente.',
         ],
-        'update' => [
-            'title'    => 'Crie uma nova atualização de incidente',
-            'subtitle' => 'Adicione uma atualização ao <strong>:incidente</strong>',
-        ],
 
         // Incident templates
         'templates' => [
             'title' => 'Template de incidentes',
             'add'   => [
                 'title'   => 'Criar um modelo de incidente',
-                'message' => 'Você deve adicionar um modelo de incidente.',
+                'message' => 'Create your first incident template.',
                 'success' => 'Seu novo modelo de incidente foi criado.',
                 'failure' => 'Algo deu errado com o modelo de incidente.',
             ],
@@ -64,22 +74,22 @@ return [
 
     // Incident Maintenance
     'schedule' => [
-        'schedule'     => 'Manutenção Agendada',
-        'logged'       => '{0} Não existem agendamentos, bom trabalho.|Você introduziu um agendamento.|Você reportou <strong>:count</strong> agendamentos.',
+        'schedule'     => 'Maintenance',
+        'logged'       => '{0}There has been no Maintenance, good work.|[1]You have logged one schedule.|[2,*]You have reported <strong>:count</strong> schedules.',
         'scheduled_at' => 'Agendada em :timestamp',
         'add'          => [
-            'title'   => 'Adicionar manutenção programada',
-            'success' => 'Programação adicionada.',
-            'failure' => 'Ocorreu um problema ao adicionar a programação, por favor tente novamente.',
+            'title'   => 'Add Maintenance',
+            'success' => 'Maintenance added.',
+            'failure' => 'Something went wrong adding the Maintenance, please try again.',
         ],
         'edit' => [
-            'title'   => 'Edite a manutenção agendada',
-            'success' => 'A programação foi atualizada!',
-            'failure' => 'Ocorreu um problema ao editar a programação, por favor tente novamente.',
+            'title'   => 'Edit Maintenance',
+            'success' => 'Maintenance has been updated!',
+            'failure' => 'Something went wrong editing the Maintenance, please try again.',
         ],
         'delete' => [
-            'success' => 'A manutenção programada foi excluída e não aparecerá na sua página de status.',
-            'failure' => 'A manutenção programada não pode ser excluída, por favor tente novamente.',
+            'success' => 'The Maintenance has been deleted and will not show on your status page.',
+            'failure' => 'The Maintenance could not be deleted, please try again.',
         ],
     ],
 
@@ -146,13 +156,15 @@ return [
     ],
     // Subscribers
     'subscribers' => [
-        'subscribers'      => 'Assinantes',
-        'description'      => 'Assinantes vão receber atualizações de e-mail quando incidentes criados ou componentes atualizados.',
-        'verified'         => 'Verificado',
-        'not_verified'     => 'Não verificado',
-        'subscriber'       => ':email, inscreveu-se em :date',
-        'no_subscriptions' => 'Inscrito em todas as atualizações',
-        'add'              => [
+        'subscribers'          => 'Assinantes',
+        'description'          => 'Assinantes vão receber atualizações de e-mail quando incidentes criados ou componentes atualizados.',
+        'description_disabled' => 'To use this feature, you need allow people to signup for notifications.',
+        'verified'             => 'Verificado',
+        'not_verified'         => 'Não verificado',
+        'subscriber'           => ':email, inscreveu-se em :date',
+        'no_subscriptions'     => 'Inscrito em todas as atualizações',
+        'global'               => 'Globally subscribed',
+        'add'                  => [
             'title'   => 'Adicionar um novo assinante',
             'success' => 'Inscrito adicionado.',
             'failure' => 'Algo deu errado adicionando o assinante, por favor tente novamente.',
@@ -204,7 +216,7 @@ return [
             'analytics' => 'Estatísticas',
         ],
         'log' => [
-            'log' => 'Registro de eventos',
+            'log' => 'Log',
         ],
         'localization' => [
             'localization' => 'Idioma',

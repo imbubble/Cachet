@@ -27,15 +27,14 @@ return [
 
     // Incidents
     'incidents' => [
-        'none'          => 'Ingen hændelser er rapporteret',
-        'past'          => 'Tidligere hændelser',
-        'previous_week' => 'Forrige uge',
-        'next_week'     => 'Næste uge',
-        'stickied'      => 'Stickied Incidents',
-        'scheduled'     => 'Planlagt vedligeholdelse',
-        'scheduled_at'  => ', planlagt til :timestamp',
-        'posted'        => 'Posted :timestamp',
-        'status'        => [
+        'none'         => 'Ingen hændelser er rapporteret',
+        'past'         => 'Tidligere hændelser',
+        'stickied'     => 'Stickied Incidents',
+        'scheduled'    => 'Maintenance',
+        'scheduled_at' => ', planlagt til :timestamp',
+        'posted'       => 'Posted :timestamp',
+        'posted_at'    => 'Posted at :timestamp',
+        'status'       => [
             1 => 'Undersøger',
             2 => 'Identificeret',
             3 => 'Overvåger',
@@ -54,9 +53,9 @@ return [
 
     // Service Status
     'service' => [
-        'good'  => '[0,1] Systemet virker|[2,Inf] Alle systemer virker',
-        'bad'   => '[0,1] Systemet har i øjeblikket problemer|[2,Inf] Nogle systemer har i øjeblikket problemer',
-        'major' => '[0,1] Systemet har i øjeblikket store problemer|[2,Inf] Nogle systemer har i øjeblikket store problemer',
+        'good'  => '[0,1]System operational|[2,*]All systems are operational',
+        'bad'   => '[0,1]The system is experiencing issues|[2,*]Some systems are experiencing issues',
+        'major' => '[0,1]The system is experiencing major issues|[2,*]Some systems are experiencing major issues',
     ],
 
     'api' => [
@@ -76,18 +75,20 @@ return [
 
     // Subscriber
     'subscriber' => [
-        'subscribe'   => 'Tilmeld dig for at få de seneste opdateringer',
-        'unsubscribe' => 'Unsubscribe at :link',
-        'button'      => 'Abonner',
-        'manage'      => [
+        'subscribe'           => 'Tilmeld dig for at få de seneste opdateringer',
+        'unsubscribe'         => 'Unsubscribe',
+        'button'              => 'Abonner',
+        'manage_subscription' => 'Manage subscription',
+        'manage'              => [
             'no_subscriptions' => 'Du abonner i øjeblikket på alle opdateringer.',
             'my_subscriptions' => 'Du abonnere i øjeblikket på følgende opdateringer.',
+            'manage_at_link'   => 'Manage your subscriptions at :link',
         ],
         'email' => [
             'subscribe'          => 'Abonner på email opdateringer.',
             'subscribed'         => 'Du er blevet tilmeldt email notifikationer. Vi har sendt dig en bekræftelse på den indtastede email-adresse.',
             'verified'           => 'Din tilmelding er nu blevet bekræftet, tak.',
-            'manage'             => 'Administrer dit abonnement',
+            'manage'             => 'Manage your subscription',
             'unsubscribe'        => 'Afmeld email notifikationer.',
             'unsubscribed'       => 'Du er nu blevet frameldt vores emailnotifikationer.',
             'failure'            => 'Noget gik galt med bekræftelsen.',
@@ -118,11 +119,20 @@ return [
         ],
     ],
 
+    // Meta descriptions
+    'meta' => [
+        'description' => [
+            'incident'  => 'Details and updates about the :name incident that occurred on :date',
+            'schedule'  => 'Details about the scheduled maintenance period :name starting :startDate',
+            'subscribe' => 'Subscribe to :app in order to receive updates of incidents and scheduled maintenance periods',
+            'overview'  => 'Hold dig opdateret med de seneste opdateringer fra :app.',
+        ],
+    ],
+
     // Other
     'home'            => 'Hjem',
-    'description'     => 'Hold dig opdateret med de seneste opdateringer fra :app.',
-    'powered_by'      => 'Drevet af <a href="https://cachethq.io" class="links"> Cachet</a>.',
-    'timezone'        => 'Tidspunkter er vist i :timezone.',
+    'powered_by'      => 'Powered by <a href="https://cachethq.io" class="links">Cachet</a>.',
+    'timezone'        => 'Times are shown in :timezone.',
     'about_this_site' => 'Om denne side',
     'rss-feed'        => 'RSS',
     'atom-feed'       => 'Atom',

@@ -42,7 +42,7 @@ class ScheduleController extends Controller
      */
     public function __construct()
     {
-        View::share('sub_title', trans('dashboard.schedule.title'));
+        View::share('subTitle', trans('dashboard.schedule.title'));
     }
 
     /**
@@ -54,7 +54,7 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::orderBy('created_at')->get();
 
-        return View::make('dashboard.schedule.index')
+        return View::make('dashboard.maintenance.index')
             ->withPageTitle(trans('dashboard.schedule.schedule').' - '.trans('dashboard.dashboard'))
             ->withSchedule($schedule);
     }
@@ -68,7 +68,7 @@ class ScheduleController extends Controller
     {
         $incidentTemplates = IncidentTemplate::all();
 
-        return View::make('dashboard.schedule.add')
+        return View::make('dashboard.maintenance.add')
             ->withPageTitle(trans('dashboard.schedule.add.title').' - '.trans('dashboard.dashboard'))
             ->withIncidentTemplates($incidentTemplates);
     }
@@ -81,7 +81,7 @@ class ScheduleController extends Controller
     public function addScheduleAction()
     {
         try {
-            dispatch(new CreateScheduleCommand(
+            execute(new CreateScheduleCommand(
                 Binput::get('name'),
                 Binput::get('message', null, false, false),
                 Binput::get('status', Schedule::UPCOMING),
@@ -92,7 +92,7 @@ class ScheduleController extends Controller
         } catch (ValidationException $e) {
             return cachet_redirect('dashboard.schedule.create')
                 ->withInput(Binput::all())
-                ->withSuccess(sprintf('%s %s', trans('dashboard.notifications.whoops'), trans('dashboard.schedule.add.failure')))
+                ->withTitle(sprintf('%s %s', trans('dashboard.notifications.whoops'), trans('dashboard.schedule.edit.failure')))
                 ->withErrors($e->getMessageBag());
         }
 
@@ -111,7 +111,7 @@ class ScheduleController extends Controller
     {
         $incidentTemplates = IncidentTemplate::all();
 
-        return View::make('dashboard.schedule.edit')
+        return View::make('dashboard.maintenance.edit')
             ->withPageTitle(trans('dashboard.schedule.edit.title').' - '.trans('dashboard.dashboard'))
             ->withIncidentTemplates($incidentTemplates)
             ->withSchedule($schedule);
@@ -127,7 +127,7 @@ class ScheduleController extends Controller
     public function editScheduleAction(Schedule $schedule)
     {
         try {
-            $schedule = dispatch(new UpdateScheduleCommand(
+            $schedule = execute(new UpdateScheduleCommand(
                 $schedule,
                 Binput::get('name', null),
                 Binput::get('message', null),
@@ -156,7 +156,7 @@ class ScheduleController extends Controller
      */
     public function deleteScheduleAction(Schedule $schedule)
     {
-        dispatch(new DeleteScheduleCommand($schedule));
+        execute(new DeleteScheduleCommand($schedule));
 
         return cachet_redirect('dashboard.schedule')
             ->withSuccess(sprintf('%s %s', trans('dashboard.notifications.awesome'), trans('dashboard.schedule.delete.success')));
